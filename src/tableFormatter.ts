@@ -14,7 +14,7 @@ export function activate(_: ExtensionContext) {
     let registration: Disposable | undefined;
 
     function registerFormatterIfEnabled() {
-        const isEnabled = workspace.getConfiguration().get('markdown.extension.tableFormatter.enabled', true);
+        const isEnabled = workspace.getConfiguration().get('mdx.extension.tableFormatter.enabled', true);
         if (isEnabled && !registration) {
             registration = languages.registerDocumentFormattingEditProvider(mdDocSelector, new MarkdownDocumentFormatter());
         } else if (!isEnabled && registration) {
@@ -26,7 +26,7 @@ export function activate(_: ExtensionContext) {
     registerFormatterIfEnabled();
 
     workspace.onDidChangeConfiguration(event => {
-        if (event.affectsConfiguration('markdown.extension.tableFormatter.enabled')) {
+        if (event.affectsConfiguration('mdx.extension.tableFormatter.enabled')) {
             registerFormatterIfEnabled();
         }
     });
@@ -79,7 +79,7 @@ class MarkdownDocumentFormatter implements DocumentFormattingEditProvider {
      * the configured `tabSize`.
      */
     private getTableIndentation(text: string, options: FormattingOptions) {
-        let doNormalize = workspace.getConfiguration('markdown.extension.tableFormatter').get<boolean>('normalizeIndentation');
+        let doNormalize = workspace.getConfiguration('mdx.extension.tableFormatter').get<boolean>('normalizeIndentation');
         let indentRegex = new RegExp(/^(\s*)\S/u);
         let match = text.match(indentRegex);
         let spacesInFirstLine = match[1].length;

@@ -63,7 +63,7 @@ async function print(type: string) {
     let body: string = await mdEngine.render(doc.getText(), workspace.getConfiguration('mdx.preview', doc.uri));
 
     // Image paths
-    const config = workspace.getConfiguration('markdown.extension', doc.uri);
+    const config = workspace.getConfiguration('mdx.extension', doc.uri);
     const configToBase64 = config.get<boolean>('print.imgToBase64');
     const configAbsPath = config.get<boolean>('print.absoluteImgPath');
     const imgTagRegex = /(<img[^>]+src=")([^"]+)("[^>]*>)/g;  // Match '<img...src="..."...>'
@@ -176,7 +176,7 @@ function getStyles(uri: Uri, hasMathEnv: boolean) {
 }
 
 function getCustomStyleSheets(resource: Uri): string[] {
-    const styles = workspace.getConfiguration('markdown', resource)['styles'];
+    const styles = workspace.getConfiguration('mdx', resource)['styles'];
     if (styles && Array.isArray(styles) && styles.length > 0) {
         const root = workspace.getWorkspaceFolder(resource);
         return styles.map(s => {

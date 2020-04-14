@@ -20,7 +20,7 @@ suite("No list editing.", () => {
     });
 
     test("Enter key. Disable in fenced code block", done => {
-        testCommand('markdown.extension.onEnterKey', {},
+        testCommand('mdx.extension.onEnterKey', {},
             [
                 '```',
                 '- item1'
@@ -35,7 +35,7 @@ suite("No list editing.", () => {
     });
 
     test("Enter key. Respect indentation rules", done => {
-        testCommand('markdown.extension.onEnterKey', {},
+        testCommand('mdx.extension.onEnterKey', {},
             [
                 '```',
                 '{}'
@@ -51,7 +51,7 @@ suite("No list editing.", () => {
     });
 
     test("Backspace key: '-  |'", done => {
-        testCommand('markdown.extension.onBackspaceKey', {},
+        testCommand('mdx.extension.onBackspaceKey', {},
             [
                 '-  item1'
             ],
@@ -63,7 +63,7 @@ suite("No list editing.", () => {
     });
 
     test("Backspace key: '  -  |'", done => {
-        testCommand('markdown.extension.onBackspaceKey', {},
+        testCommand('mdx.extension.onBackspaceKey', {},
             [
                 '  -  item1'
             ],
@@ -75,7 +75,7 @@ suite("No list editing.", () => {
     });
 
     test("Backspace key: '- [ ]  |'", done => {
-        testCommand('markdown.extension.onBackspaceKey', {},
+        testCommand('mdx.extension.onBackspaceKey', {},
             [
                 '- [ ]  item1'
             ],
@@ -87,7 +87,7 @@ suite("No list editing.", () => {
     });
 
     test("Shift tab key: '    text'", done => {
-        testCommand('markdown.extension.onShiftTabKey', {},
+        testCommand('mdx.extension.onShiftTabKey', {},
             [
                 '    text'
             ],

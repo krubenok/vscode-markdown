@@ -20,7 +20,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Enter key. Fix ordered marker", done => {
-        testCommand('markdown.extension.onEnterKey', {},
+        testCommand('mdx.extension.onEnterKey', {},
             [
                 '1. one',
                 '2. two'
@@ -35,7 +35,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Backspace key. Fix ordered marker. 1", done => {
-        testCommand('markdown.extension.onBackspaceKey', {},
+        testCommand('mdx.extension.onBackspaceKey', {},
             [
                 '    1. item1'
             ],
@@ -47,7 +47,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Backspace key. Fix ordered marker. 2", done => {
-        testCommand('markdown.extension.onBackspaceKey', {},
+        testCommand('mdx.extension.onBackspaceKey', {},
             [
                 '1. item1',
                 '   5. item2'
@@ -61,7 +61,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Backspace key. Fix ordered marker. 3", done => {
-        testCommand('markdown.extension.onBackspaceKey', {},
+        testCommand('mdx.extension.onBackspaceKey', {},
             [
                 '1. item1',
                 '   1. item1-1',
@@ -81,7 +81,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Backspace key. Fix ordered marker. 4: Multi-line list item", done => {
-        testCommand('markdown.extension.onBackspaceKey', {},
+        testCommand('mdx.extension.onBackspaceKey', {},
             [
                 '1. item1',
                 '   1. item1-1',
@@ -101,7 +101,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Backspace key. Fix ordered marker. 5: Selection range", done => {
-        testCommand('markdown.extension.onBackspaceKey', {},
+        testCommand('mdx.extension.onBackspaceKey', {},
             [
                 '1. item1',
                 '2. item2',
@@ -121,7 +121,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Backspace key. github#411", done => {
-        testCommand('markdown.extension.onBackspaceKey', {},
+        testCommand('mdx.extension.onBackspaceKey', {},
         [
             '1. one',
             '2. ',
@@ -143,7 +143,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Tab key. Fix ordered marker. 1", done => {
-        testCommand('markdown.extension.onTabKey', {},
+        testCommand('mdx.extension.onTabKey', {},
             [
                 '2. item1'
             ],
@@ -155,7 +155,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Tab key. Fix ordered marker. 2", done => {
-        testCommand('markdown.extension.onTabKey', {},
+        testCommand('mdx.extension.onTabKey', {},
             [
                 '2. [ ] item1'
             ],
@@ -167,7 +167,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Tab key. Fix ordered marker. 3", done => {
-        testCommand('markdown.extension.onTabKey', {},
+        testCommand('mdx.extension.onTabKey', {},
             [
                 '1. test',
                 '   1. test',
@@ -187,7 +187,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Tab key. Fix ordered marker. 4: Multi-line list item", done => {
-        testCommand('markdown.extension.onTabKey', {},
+        testCommand('mdx.extension.onTabKey', {},
             [
                 '1. test',
                 '   1. test',
@@ -207,7 +207,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Tab key. Fix ordered marker. 5: Selection range", done => {
-        testCommand('markdown.extension.onTabKey', {},
+        testCommand('mdx.extension.onTabKey', {},
             [
                 '1. test',
                 '2. test',
@@ -228,7 +228,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Move Line Up. 1: '2. |'", done => {
-        testCommand('markdown.extension.onMoveLineUp', {},
+        testCommand('mdx.extension.onMoveLineUp', {},
             [
                 '1. item1',
                 '2. item2'
@@ -242,7 +242,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Move Line Up. 2: '2.  |'", done => {
-        testCommand('markdown.extension.onMoveLineUp', {},
+        testCommand('mdx.extension.onMoveLineUp', {},
             [
                 '1.  item1',
                 '2.  item2'
@@ -256,7 +256,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Move Line Up. 3: '2. [ ] |'", done => {
-        testCommand('markdown.extension.onMoveLineUp', {},
+        testCommand('mdx.extension.onMoveLineUp', {},
             [
                 '1. [ ] item1',
                 '2. [ ] item2'
@@ -270,7 +270,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Move Line Down. 1: '1. |'", done => {
-        testCommand('markdown.extension.onMoveLineDown', {},
+        testCommand('mdx.extension.onMoveLineDown', {},
             [
                 '1. item1',
                 '2. item2'
@@ -284,7 +284,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Move Line Down. 2: '1.  |'", done => {
-        testCommand('markdown.extension.onMoveLineDown', {},
+        testCommand('mdx.extension.onMoveLineDown', {},
             [
                 '1.  item1',
                 '2.  item2'
@@ -298,7 +298,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Move Line Down. 3: '1. [ ] |'", done => {
-        testCommand('markdown.extension.onMoveLineDown', {},
+        testCommand('mdx.extension.onMoveLineDown', {},
             [
                 '1. [ ] item1',
                 '2. [ ] item2'
@@ -312,7 +312,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Copy Line Up. 1: '2. |'", done => {
-        testCommand('markdown.extension.onCopyLineUp', {},
+        testCommand('mdx.extension.onCopyLineUp', {},
             [
                 '1. item1',
                 '2. item2'
@@ -327,7 +327,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Copy Line Up. 2: '2.  |'", done => {
-        testCommand('markdown.extension.onCopyLineUp', {},
+        testCommand('mdx.extension.onCopyLineUp', {},
             [
                 '1.  item1',
                 '2.  item2'
@@ -342,7 +342,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Copy Line Up. 3: '2. [ ] |'", done => {
-        testCommand('markdown.extension.onCopyLineUp', {},
+        testCommand('mdx.extension.onCopyLineUp', {},
             [
                 '1. [ ] item1',
                 '2. [x] item2'
@@ -357,7 +357,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Copy Line Down. 1: '1. |'", done => {
-        testCommand('markdown.extension.onCopyLineDown', {},
+        testCommand('mdx.extension.onCopyLineDown', {},
             [
                 '1. item1',
                 '2. item2'
@@ -372,7 +372,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Copy Line Down. 2: '1.  |'", done => {
-        testCommand('markdown.extension.onCopyLineDown', {},
+        testCommand('mdx.extension.onCopyLineDown', {},
             [
                 '1.  item1',
                 '2.  item2'
@@ -387,7 +387,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Copy Line Down. 3: '1. [ ] |'", done => {
-        testCommand('markdown.extension.onCopyLineDown', {},
+        testCommand('mdx.extension.onCopyLineDown', {},
             [
                 '1. [x] item1',
                 '2. [ ] item2'
@@ -402,7 +402,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Indent Lines. 1: No selection range", done => {
-        testCommand('markdown.extension.onIndentLines', {},
+        testCommand('mdx.extension.onIndentLines', {},
             [
                 '1. test',
                 '2. test',
@@ -420,7 +420,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Indent Lines. 2: Selection range", done => {
-        testCommand('markdown.extension.onIndentLines', {},
+        testCommand('mdx.extension.onIndentLines', {},
             [
                 '1. test',
                 '2. test',
@@ -441,7 +441,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Outdent Lines. 1: No selection range", done => {
-        testCommand('markdown.extension.onOutdentLines', {},
+        testCommand('mdx.extension.onOutdentLines', {},
             [
                 '1. test',
                 '   1. test',
@@ -459,7 +459,7 @@ suite("Ordered list renumbering.", () => {
     });
 
     test("Outdent Lines. 2: Selection range", done => {
-        testCommand('markdown.extension.onOutdentLines', {},
+        testCommand('mdx.extension.onOutdentLines', {},
             [
                 '1. test',
                 '   1. test',

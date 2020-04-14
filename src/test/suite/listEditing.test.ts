@@ -20,7 +20,7 @@ suite("List editing.", () => {
     });
 
     test("Enter key. Continue list item", done => {
-        testCommand('markdown.extension.onEnterKey', {},
+        testCommand('mdx.extension.onEnterKey', {},
             [
                 '- item1'
             ],
@@ -33,7 +33,7 @@ suite("List editing.", () => {
     });
 
     test("Enter key. Don't continue empty list item", done => {
-        testCommand('markdown.extension.onEnterKey', {},
+        testCommand('mdx.extension.onEnterKey', {},
             [
                 '- item1',
                 '- '
@@ -48,7 +48,7 @@ suite("List editing.", () => {
     });
 
     test("Enter key. List marker `*`", done => {
-        testCommand('markdown.extension.onEnterKey', {},
+        testCommand('mdx.extension.onEnterKey', {},
             [
                 '* item1'],
             new Selection(0, 7, 0, 7),
@@ -60,7 +60,7 @@ suite("List editing.", () => {
     });
 
     test("Enter key. Continue GFM checkbox item. '- [ ] item1|'", done => {
-        testCommand('markdown.extension.onEnterKey', {},
+        testCommand('mdx.extension.onEnterKey', {},
             [
                 '- [ ] item1'
             ],
@@ -73,7 +73,7 @@ suite("List editing.", () => {
     });
 
     test("Enter key. Keep list item text indentation. '1.  item1|'", done => {
-        testCommand('markdown.extension.onEnterKey', {},
+        testCommand('mdx.extension.onEnterKey', {},
             [
                 '1.  item1'
             ],
@@ -86,7 +86,7 @@ suite("List editing.", () => {
     });
 
     test("Enter key. Keep list item text indentation. '9.  item9|'", done => {
-        testCommand('markdown.extension.onEnterKey', {},
+        testCommand('mdx.extension.onEnterKey', {},
             [
                 '9.  item9'
             ],
@@ -99,7 +99,7 @@ suite("List editing.", () => {
     });
 
     test("Enter key. '- [test]|'. #122", done => {
-        testCommand('markdown.extension.onEnterKey', {},
+        testCommand('mdx.extension.onEnterKey', {},
             [
                 '- [test]'
             ],
@@ -112,7 +112,7 @@ suite("List editing.", () => {
     });
 
     test("Enter key. '> |'", done => {
-        testCommand('markdown.extension.onEnterKey', {},
+        testCommand('mdx.extension.onEnterKey', {},
             [
                 '> test'
             ],
@@ -125,7 +125,7 @@ suite("List editing.", () => {
     });
 
     test("Backspace key: '- |'", done => {
-        testCommand('markdown.extension.onBackspaceKey', {},
+        testCommand('mdx.extension.onBackspaceKey', {},
             [
                 '- item1'
             ],
@@ -137,7 +137,7 @@ suite("List editing.", () => {
     });
 
     test("Backspace key: '- [ ] |'", done => {
-        testCommand('markdown.extension.onBackspaceKey', {},
+        testCommand('mdx.extension.onBackspaceKey', {},
             [
                 '- [ ] item1'
             ],
@@ -149,7 +149,7 @@ suite("List editing.", () => {
     });
 
     test("Backspace key: '  - [ ] |'", done => {
-        testCommand('markdown.extension.onBackspaceKey', {},
+        testCommand('mdx.extension.onBackspaceKey', {},
             [
                 '  - [ ] item1'
             ],
@@ -161,7 +161,7 @@ suite("List editing.", () => {
     });
 
     test("Tab key. 1: '- |'", done => {
-        testCommand('markdown.extension.onTabKey', {},
+        testCommand('mdx.extension.onTabKey', {},
             [
                 '- item1'
             ],
@@ -173,7 +173,7 @@ suite("List editing.", () => {
     });
 
     test("Tab key. 2: '-  |'", done => {
-        testCommand('markdown.extension.onTabKey', {},
+        testCommand('mdx.extension.onTabKey', {},
             [
                 '-  item1'
             ],
@@ -185,7 +185,7 @@ suite("List editing.", () => {
     });
 
     test("Tab key. 3: '- [ ] |'", done => {
-        testCommand('markdown.extension.onTabKey', {},
+        testCommand('mdx.extension.onTabKey', {},
             [
                 '- [ ] item1'
             ],
@@ -197,7 +197,7 @@ suite("List editing.", () => {
     });
 
     test("List toggle. 1: Check single line", done => {
-        testCommand('markdown.extension.checkTaskList', {},
+        testCommand('mdx.extension.checkTaskList', {},
             [
                 '- [ ] test'
             ],
@@ -210,7 +210,7 @@ suite("List editing.", () => {
     });
 
     test("List toggle. 2: Check multiple lines", done => {
-        testCommand('markdown.extension.checkTaskList', {},
+        testCommand('mdx.extension.checkTaskList', {},
             [
                 '- [ ] test',
                 '- [ ] test',
@@ -227,7 +227,7 @@ suite("List editing.", () => {
     });
 
     test("List toggle. 3: Ignore already unchecked lines when unchecking", done => {
-        testCommand('markdown.extension.checkTaskList', {},
+        testCommand('mdx.extension.checkTaskList', {},
             [
                 '- [x] test',
                 '- [ ] test',

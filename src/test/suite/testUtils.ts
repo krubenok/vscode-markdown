@@ -4,18 +4,18 @@ import { commands, window, workspace, Position, Range, Selection } from 'vscode'
 
 export let testMdFile = path.join(__dirname, '..', '..', '..', 'test', 'test.md');
 export let defaultConfigs = {
-    "markdown.extension.toc.levels": "1..6",
-    "markdown.extension.toc.unorderedList.marker": "-",
-    "markdown.extension.toc.orderedList": false,
-    "markdown.extension.toc.plaintext": false,
-    "markdown.extension.toc.updateOnSave": true,
-    "markdown.extension.toc.githubCompatibility": false,
-    "markdown.extension.toc.omittedFromToc": {},
-    "markdown.extension.toc.downcaseLink": true,
-    "markdown.extension.preview.autoShowPreviewToSide": false,
-    "markdown.extension.orderedList.marker": "ordered",
-    "markdown.extension.italic.indicator": "*",
-    "markdown.extension.tableFormatter.normalizeIndentation": false,
+    "mdx.extension.toc.levels": "1..6",
+    "mdx.extension.toc.unorderedList.marker": "-",
+    "mdx.extension.toc.orderedList": false,
+    "mdx.extension.toc.plaintext": false,
+    "mdx.extension.toc.updateOnSave": true,
+    "mdx.extension.toc.githubCompatibility": false,
+    "mdx.extension.toc.omittedFromToc": {},
+    "mdx.extension.toc.downcaseLink": true,
+    "mdx.extension.preview.autoShowPreviewToSide": false,
+    "mdx.extension.orderedList.marker": "ordered",
+    "mdx.extension.italic.indicator": "*",
+    "mdx.extension.tableFormatter.normalizeIndentation": false,
     "editor.insertSpaces": true,
     "editor.tabSize": 4
 }

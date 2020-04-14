@@ -20,7 +20,7 @@ suite("TOC.", () => {
     });
 
     test("Create", done => {
-        testCommand('markdown.extension.toc.create', {},
+        testCommand('mdx.extension.toc.create', {},
             [
                 '# Section 1',
                 '',
@@ -46,7 +46,7 @@ suite("TOC.", () => {
     });
 
     test("Update", done => {
-        testCommand('markdown.extension.toc.update', {},
+        testCommand('mdx.extension.toc.update', {},
             [
                 '# Section 1',
                 '',
@@ -79,9 +79,9 @@ suite("TOC.", () => {
     });
 
     test("Create (levels 2..3)", done => {
-        testCommand('markdown.extension.toc.create',
+        testCommand('mdx.extension.toc.create',
             {
-                "markdown.extension.toc.levels": "2..3"
+                "mdx.extension.toc.levels": "2..3"
             },
             [
                 '# Section 1',
@@ -129,9 +129,9 @@ suite("TOC.", () => {
     });
 
     test("Update (levels 2..3)", done => {
-        testCommand('markdown.extension.toc.update',
+        testCommand('mdx.extension.toc.update',
             {
-                "markdown.extension.toc.levels": "2..3"
+                "mdx.extension.toc.levels": "2..3"
             },
             [
                 '# Section 1',
@@ -173,7 +173,7 @@ suite("TOC.", () => {
     });
 
     test("Create 中文", done => {
-        testCommand('markdown.extension.toc.create', {},
+        testCommand('mdx.extension.toc.create', {},
             [
                 '# Section 中文',
                 '',
@@ -199,7 +199,7 @@ suite("TOC.", () => {
     });
 
     test("Setext headings", done => {
-        testCommand('markdown.extension.toc.create', {},
+        testCommand('mdx.extension.toc.create', {},
             [
                 'Section 1',
                 '===',
@@ -224,9 +224,9 @@ suite("TOC.", () => {
     });
 
     test("Non-Latin symbols (Option `toc.githubCompatibility`)", done => {
-        testCommand('markdown.extension.toc.create',
+        testCommand('mdx.extension.toc.create',
             {
-                "markdown.extension.toc.githubCompatibility": true
+                "mdx.extension.toc.githubCompatibility": true
             },
             [
                 '# Секция 1',
@@ -248,9 +248,9 @@ suite("TOC.", () => {
     });
 
     test("Update multiple TOCs", done => {
-        testCommand('markdown.extension.toc.update',
+        testCommand('mdx.extension.toc.update',
             {
-                "markdown.extension.toc.githubCompatibility": true
+                "mdx.extension.toc.githubCompatibility": true
             },
             [
                 '# Head 1',
@@ -290,9 +290,9 @@ suite("TOC.", () => {
 
     test("Exclude omitted headings (`toc.omittedFromToc`)", (done) => {
         testCommand(
-            'markdown.extension.toc.create',
+            'mdx.extension.toc.create',
             {
-                'markdown.extension.toc.omittedFromToc': {
+                'mdx.extension.toc.omittedFromToc': {
                     [testMdFile]: [
                         // With more than one space between sharps and text.
                         '#  Introduction',
@@ -360,9 +360,9 @@ suite("TOC.", () => {
     })
 
     test("Option `toc.downcaseLink`", done => {
-        testCommand('markdown.extension.toc.create',
+        testCommand('mdx.extension.toc.create',
             {
-                "markdown.extension.toc.downcaseLink": false
+                "mdx.extension.toc.downcaseLink": false
             },
             [
                 '# Section 1',
@@ -389,7 +389,7 @@ suite("TOC.", () => {
     });
 
     test("Inline <!-- omit in toc -->", done => {
-        testCommand('markdown.extension.toc.create', {},
+        testCommand('mdx.extension.toc.create', {},
             [
                 '# Section 1',
                 '',
@@ -414,7 +414,7 @@ suite("TOC.", () => {
     });
 
     test("<!-- omit in toc --> in previous line", done => {
-        testCommand('markdown.extension.toc.create', {},
+        testCommand('mdx.extension.toc.create', {},
             [
                 '# Section 1',
                 '',
@@ -441,7 +441,7 @@ suite("TOC.", () => {
     });
 
     test("Ignore code blocks", done => {
-        testCommand('markdown.extension.toc.create', {},
+        testCommand('mdx.extension.toc.create', {},
             [
                 '# Section 1',
                 '',
@@ -470,7 +470,7 @@ suite("TOC.", () => {
     });
 
     test("Ignore code blocks 2 (GitHub #603)", done => {
-        testCommand('markdown.extension.toc.create', {},
+        testCommand('mdx.extension.toc.create', {},
             [
                 '# Section 1',
                 '',
@@ -498,8 +498,8 @@ suite("TOC.", () => {
             new Selection(9, 25, 9, 25)).then(done, done);
     });
 
-    test("Markdown syntax in headings", done => {
-        testCommand('markdown.extension.toc.create', {},
+    test("mdx syntax in headings", done => {
+        testCommand('mdx.extension.toc.create', {},
             [
                 '# [text](link)',
                 '# [text2][label]',

@@ -58,12 +58,12 @@ let regexDecorTypeMappingPlainTheme = {
 
 export function activate(_: ExtensionContext) {
     workspace.onDidChangeConfiguration(event => {
-        if (event.affectsConfiguration('markdown.extension.syntax.decorations')) {
+        if (event.affectsConfiguration('mdx.extension.syntax.decorations')) {
             window.showInformationMessage("Please reload VSCode to make setting `syntax.decorations` take effect.")
         }
     });
 
-    if (!workspace.getConfiguration('markdown.extension.syntax').get<boolean>('decorations')) return;
+    if (!workspace.getConfiguration('mdx.extension.syntax').get<boolean>('decorations')) return;
 
     window.onDidChangeActiveTextEditor(updateDecorations);
 
@@ -109,7 +109,7 @@ function updateDecorations(editor?: TextEditor) {
     }
 
     // e.g. { "(~~.+?~~)": ["strikethrough"] }
-    let appliedMappings = workspace.getConfiguration('markdown.extension.syntax').get<boolean>('plainTheme') ?
+    let appliedMappings = workspace.getConfiguration('mdx.extension.syntax').get<boolean>('plainTheme') ?
         { ...regexDecorTypeMappingPlainTheme, ...regexDecorTypeMapping } :
         regexDecorTypeMapping;
 

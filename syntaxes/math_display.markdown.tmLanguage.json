@@ -1,6 +1,6 @@
 {
 	"fileTypes": [],
-	"injectionSelector": "L:(text.html.markdown - meta - comment.block - markup.raw)",
+	"injectionSelector": "L:(text.html.mdx - meta - comment.block - markup.raw)",
 	"patterns": [
 		{
 			"include": "#math-display"
@@ -8,17 +8,17 @@
 	],
 	"repository": {
 		"math-display": {
-			"name": "markup.inserted.math.display.markdown",
+			"name": "markup.inserted.math.display.mdx",
 			"begin": "(^|\\G)([ ]{0,3})((?<![^\\\\]\\\\)\\$\\$(?!\\$))",
 			"end": "(?<![^\\\\]\\\\)(?<![^\\\\]\\$)(\\$\\$)([\\s]*)$",
 			"beginCaptures": {
 				"0": {
-					"name": "punctuation.definition.math.display.markdown"
+					"name": "punctuation.definition.math.display.mdx"
 				}
 			},
 			"endCaptures": {
 				"0": {
-					"name": "punctuation.definition.math.display.markdown"
+					"name": "punctuation.definition.math.display.mdx"
 				}
 			},
 			"contentName": "meta.embedded.block.katex",
@@ -29,5 +29,5 @@
 			]
 		}
 	},
-	"scopeName": "markdown.math_display"
+	"scopeName": "mdx.math_display"
 }

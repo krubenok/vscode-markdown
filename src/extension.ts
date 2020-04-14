@@ -17,9 +17,9 @@ import { getNewFeatureMsg, showChangelog } from './util';
 export function activate(context: ExtensionContext) {
     activateMdExt(context);
 
-    if (workspace.getConfiguration('markdown.extension.math').get<boolean>('enabled')) {
+    if (workspace.getConfiguration('mdx.extension.math').get<boolean>('enabled')) {
         // Make a deep copy as `macros` will be modified by KaTeX during initialization
-        let userMacros = JSON.parse(JSON.stringify(workspace.getConfiguration('markdown.extension.katex').get<object>('macros')));
+        let userMacros = JSON.parse(JSON.stringify(workspace.getConfiguration('mdx.extension.katex').get<object>('macros')));
         let katexOptions = { throwOnError: false };
         if (Object.keys(userMacros).length !== 0) {
             katexOptions['macros'] = userMacros;
@@ -60,7 +60,7 @@ function activateMdExt(context: ExtensionContext) {
     preview.activate(context);
 
     // Allow `*` in word pattern for quick styling
-    languages.setLanguageConfiguration('markdown', {
+    languages.setLanguageConfiguration('mdx', {
         wordPattern: /(-?\d*\.\d\w*)|([^\!\@\#\%\^\&\(\)\-\=\+\[\{\]\}\\\|\;\:\'\"\,\.\<\>\/\?\s\，\。\《\》\？\；\：\‘\“\’\”\（\）\【\】\、]+)/g
     });
 

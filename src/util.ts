@@ -10,10 +10,10 @@ import { mdEngine } from './markdownEngine';
    └────────┘ */
 
 /** Scheme `File` or `Untitled` */
-export const mdDocSelector = [{ language: 'markdown', scheme: 'file' }, { language: 'markdown', scheme: 'untitled' }];
+export const mdDocSelector = [{ language: 'mdx', scheme: 'file' }, { language: 'mdx', scheme: 'untitled' }];
 
 export function isMdEditor(editor: TextEditor) {
-    return editor && editor.document && editor.document.languageId === 'markdown';
+    return editor && editor.document && editor.document.languageId === 'mdx';
 }
 
 export function isInFencedCodeBlock(doc: TextDocument, lineNum: number): boolean {
@@ -163,7 +163,7 @@ export function slugify(heading: string, github?: boolean, downcase?: boolean) {
         github = workspace.getConfiguration('markdown.extension.toc').get<boolean>('githubCompatibility');
     }
     if (downcase === undefined) {
-        downcase = workspace.getConfiguration('markdown.extension.toc').get<boolean>('downcaseLink');
+        downcase = workspace.getConfiguration('mdx.extension.toc').get<boolean>('downcaseLink');
     }
 
     if (github) {

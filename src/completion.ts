@@ -365,7 +365,7 @@ class MdCompletionItemProvider implements CompletionItemProvider {
         if (workspace.workspaceFolders !== undefined) {
             resource = workspace.workspaceFolders[0].uri;
         }
-        let configMacros = workspace.getConfiguration('markdown.extension.katex', resource).get<object>('macros');
+        let configMacros = workspace.getConfiguration('mdx.extension.katex', resource).get<object>('macros');
         var macroItems: CompletionItem[] = [];
         for (const cmd of Object.keys(configMacros)) {
             const expansion: string = configMacros[cmd];
@@ -604,7 +604,7 @@ function getBasepath(doc: TextDocument, dir: string): string {
     }
 
     let root = workspace.getWorkspaceFolder(doc.uri).uri.fsPath;
-    const rootFolder = workspace.getConfiguration('markdown.extension.completion', doc.uri).get<string>('root', '');
+    const rootFolder = workspace.getConfiguration('mdx.extension.completion', doc.uri).get<string>('root', '');
     if (rootFolder.length > 0 && fs.existsSync(path.join(root, rootFolder))) {
         root = path.join(root, rootFolder);
     }
