@@ -5,19 +5,19 @@ import { isInFencedCodeBlock, mathEnvCheck } from './util';
 
 export function activate(context: ExtensionContext) {
     context.subscriptions.push(
-        commands.registerCommand('markdown.extension.onEnterKey', onEnterKey),
-        commands.registerCommand('markdown.extension.onCtrlEnterKey', () => { return onEnterKey('ctrl'); }),
-        commands.registerCommand('markdown.extension.onShiftEnterKey', () => { return onEnterKey('shift'); }),
-        commands.registerCommand('markdown.extension.onTabKey', onTabKey),
-        commands.registerCommand('markdown.extension.onShiftTabKey', () => { return onTabKey('shift'); }),
-        commands.registerCommand('markdown.extension.onBackspaceKey', onBackspaceKey),
-        commands.registerCommand('markdown.extension.checkTaskList', checkTaskList),
-        commands.registerCommand('markdown.extension.onMoveLineDown', onMoveLineDown),
-        commands.registerCommand('markdown.extension.onMoveLineUp', onMoveLineUp),
-        commands.registerCommand('markdown.extension.onCopyLineDown', onCopyLineDown),
-        commands.registerCommand('markdown.extension.onCopyLineUp', onCopyLineUp),
-        commands.registerCommand('markdown.extension.onIndentLines', onIndentLines),
-        commands.registerCommand('markdown.extension.onOutdentLines', onOutdentLines)
+        commands.registerCommand('mdx.extension.onEnterKey', onEnterKey),
+        commands.registerCommand('mdx.extension.onCtrlEnterKey', () => { return onEnterKey('ctrl'); }),
+        commands.registerCommand('mdx.extension.onShiftEnterKey', () => { return onEnterKey('shift'); }),
+        commands.registerCommand('mdx.extension.onTabKey', onTabKey),
+        commands.registerCommand('mdx.extension.onShiftTabKey', () => { return onTabKey('shift'); }),
+        commands.registerCommand('mdx.extension.onBackspaceKey', onBackspaceKey),
+        commands.registerCommand('mdx.extension.checkTaskList', checkTaskList),
+        commands.registerCommand('mdx.extension.onMoveLineDown', onMoveLineDown),
+        commands.registerCommand('mdx.extension.onMoveLineUp', onMoveLineUp),
+        commands.registerCommand('mdx.extension.onCopyLineDown', onCopyLineDown),
+        commands.registerCommand('mdx.extension.onCopyLineUp', onCopyLineUp),
+        commands.registerCommand('mdx.extension.onIndentLines', onIndentLines),
+        commands.registerCommand('mdx.extension.onOutdentLines', onOutdentLines)
     );
 }
 
@@ -72,7 +72,7 @@ function onEnterKey(modifiers?: string) {
         }).then(() => { editor.revealRange(editor.selection) });
     } else if ((matches = /^(\s*)([0-9]+)([.)])( +)((\[[ x]\] +)?)/.exec(textBeforeCursor)) !== null) {
         // Ordered list
-        let config = workspace.getConfiguration('markdown.extension.orderedList').get<string>('marker');
+        let config = workspace.getConfiguration('mdx.extension.orderedList').get<string>('marker');
         let marker = '1';
         let leadingSpace = matches[1];
         let previousMarker = matches[2];
@@ -188,7 +188,7 @@ function asNormal(key: string, modifiers?: string) {
  * If
  * 
  * 1. it is not the first line
- * 2. there is a Markdown list item before this line
+ * 2. there is a mdx list item before this line
  * 
  * then indent the current line to align with the previous list item.
  */
@@ -197,7 +197,7 @@ function indent(editor?: TextEditor) {
         editor = window.activeTextEditor;
     }
 
-    if (workspace.getConfiguration("markdown.extension.list", editor.document.uri).get<string>("indentationSize") === "adaptive") {
+    if (workspace.getConfiguration("mdx.extension.list", editor.document.uri).get<string>("indentationSize") === "adaptive") {
         try {
             const selection = editor.selection;
             const indentationSize = tryDetermineIndentationSize(editor, selection.start.line, editor.document.lineAt(selection.start.line).firstNonWhitespaceCharacterIndex);
@@ -225,7 +225,7 @@ function outdent(editor?: TextEditor) {
         editor = window.activeTextEditor;
     }
 
-    if (workspace.getConfiguration("markdown.extension.list", editor.document.uri).get<string>("indentationSize") === "adaptive") {
+    if (workspace.getConfiguration("mdx.extension.list", editor.document.uri).get<string>("indentationSize") === "adaptive") {
         try {
             const selection = editor.selection;
             const indentationSize = tryDetermineIndentationSize(editor, selection.start.line, editor.document.lineAt(selection.start.line).firstNonWhitespaceCharacterIndex);
@@ -262,7 +262,7 @@ function tryDetermineIndentationSize(editor: TextEditor, line: number, currentIn
             }
         }
     }
-    throw "No previous Markdown list item";
+    throw "No previous mdx list item";
 }
 
 /**
@@ -326,8 +326,8 @@ function lookUpwardForMarker(editor: TextEditor, line: number, currentIndentatio
  * Fix ordered list marker *iteratively* starting from current line
  */
 export function fixMarker(line?: number) {
-    if (!workspace.getConfiguration('markdown.extension.orderedList').get<boolean>('autoRenumber')) return;
-    if (workspace.getConfiguration('markdown.extension.orderedList').get<string>('marker') == 'one') return;
+    if (!workspace.getConfiguration('mdx.extension.orderedList').get<boolean>('autoRenumber')) return;
+    if (workspace.getConfiguration('mdx.extension.orderedList').get<string>('marker') == 'one') return;
 
     let editor = window.activeTextEditor;
     if (line === undefined) {

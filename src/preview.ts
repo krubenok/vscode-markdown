@@ -17,34 +17,34 @@ export function activate(context: ExtensionContext) {
 
     // Override default preview keybindings (from 'open preview' to 'toggle preview' i.e. 'open/close preview')
     context.subscriptions.push(
-        commands.registerCommand('markdown.extension.togglePreview', () => {
+        commands.registerCommand('mdx.extension.togglePreview', () => {
             let editor = window.activeTextEditor;
             if (!editor) {
                 commands.executeCommand('workbench.action.closeActiveEditor');
-            } else if (editor.document.languageId === 'markdown') {
-                commands.executeCommand('markdown.showPreview');
+            } else if (editor.document.languageId === 'mdx') {
+                commands.executeCommand('mdx.showPreview');
             }
         }),
-        commands.registerCommand('markdown.extension.togglePreviewToSide', () => {
+        commands.registerCommand('mdx.extension.togglePreviewToSide', () => {
             let editor = window.activeTextEditor;
             if (!editor) {
                 commands.executeCommand('workbench.action.closeActiveEditor');
-            } else if (editor.document.languageId === 'markdown') {
-                commands.executeCommand('markdown.showPreviewToSide');
+            } else if (editor.document.languageId === 'mdx') {
+                commands.executeCommand('mdx.showPreviewToSide');
             }
         })
     );
 }
 
 function autoPreviewToSide(editor: TextEditor) {
-    if (!workspace.getConfiguration('markdown.extension.preview').get<boolean>('autoShowPreviewToSide'))
+    if (!workspace.getConfiguration('mdx.extension.preview').get<boolean>('autoShowPreviewToSide'))
         return;
-    if (!editor || editor.document.languageId !== 'markdown')
+    if (!editor || editor.document.languageId !== 'mdx')
         return;
 
     let doc = editor.document;
     if (doc != currentDoc) {
-        commands.executeCommand('markdown.showPreviewToSide')
+        commands.executeCommand('mdx.showPreviewToSide')
             .then(() => { commands.executeCommand('workbench.action.navigateBack'); });
         currentDoc = doc;
     }

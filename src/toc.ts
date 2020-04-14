@@ -13,8 +13,8 @@ const tocConfig = { startDepth: 1, endDepth: 6, listMarker: '-', orderedList: fa
 
 export function activate(context: ExtensionContext) {
     context.subscriptions.push(
-        commands.registerCommand('markdown.extension.toc.create', createToc),
-        commands.registerCommand('markdown.extension.toc.update', updateToc),
+        commands.registerCommand('mdx.extension.toc.create', createToc),
+        commands.registerCommand('mdx.extension.toc.update', updateToc),
         workspace.onWillSaveTextDocument(onWillSave),
         languages.registerCodeLensProvider(mdDocSelector, new TocCodeLensProvider())
     );
@@ -71,7 +71,7 @@ function normalizePath(path: string): string {
 
 //// Returns a list of user defined excluded headings for the given document.
 function getExcludedHeadings(doc: TextDocument): { level: number, text: string }[] {
-    const configObj = workspace.getConfiguration('markdown.extension.toc').get<object>('omittedFromToc');
+    const configObj = workspace.getConfiguration('mdx.extension.toc').get<object>('omittedFromToc');
 
     if (typeof configObj !== 'object' || configObj === null) {
         window.showErrorMessage(`\`omittedFromToc\` must be an object (e.g. \`{"README.md": ["# Introduction"]}\`)`);
@@ -116,7 +116,7 @@ function getExcludedHeadings(doc: TextDocument): { level: number, text: string }
 
 async function generateTocText(doc: TextDocument): Promise<string> {
     loadTocConfig();
-    const orderedListMarkerIsOne: boolean = workspace.getConfiguration('markdown.extension.orderedList').get<string>('marker') === 'one';
+    const orderedListMarkerIsOne: boolean = workspace.getConfiguration('mdx.extension.orderedList').get<string>('marker') === 'one';
 
     let toc = [];
     let tocEntries = buildToc(doc);
@@ -195,7 +195,7 @@ async function detectTocRanges(doc: TextDocument): Promise<[Array<Range>, string
 
         //// Sanity checks
         const firstLine: string = listText.split(/\r?\n/)[0];
-        if (workspace.getConfiguration('markdown.extension.toc').get<boolean>('plaintext')) {
+        if (workspace.getConfiguration('mdx.extension.toc').get<boolean>('plaintext')) {
             //// A lazy way to check whether it is a link
             if (firstLine.includes('](')) {
                 continue;
@@ -241,13 +241,13 @@ function radioOfCommonPrefix(s1, s2) {
 
 function onWillSave(e: TextDocumentWillSaveEvent) {
     if (!tocConfig.updateOnSave) return;
-    if (e.document.languageId == 'markdown') {
+    if (e.document.languageId == 'mdx') {
         e.waitUntil(updateToc());
     }
 }
 
 function loadTocConfig() {
-    let tocSectionCfg = workspace.getConfiguration('markdown.extension.toc');
+    let tocSectionCfg = workspace.getConfiguration('mdx.extension.toc');
     let tocLevels = tocSectionCfg.get<string>('levels');
     let matches;
     if (matches = tocLevels.match(/^([1-6])\.\.([1-6])$/)) {
@@ -264,7 +264,7 @@ function loadTocConfig() {
     docConfig.eol = activeEditor.document.eol === EndOfLine.CRLF ? '\r\n' : '\n';
 
     let tabSize = Number(activeEditor.options.tabSize);
-    if (workspace.getConfiguration('markdown.extension.list', activeEditor.document.uri).get<string>('indentationSize') === 'adaptive') {
+    if (workspace.getConfiguration('mdx.extension.list', activeEditor.document.uri).get<string>('indentationSize') === 'adaptive') {
         tabSize = tocConfig.orderedList ? 3 : 2;
     }
 

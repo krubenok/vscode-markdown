@@ -5,17 +5,17 @@ import { fixMarker } from './listEditing';
 
 export function activate(context: ExtensionContext) {
     context.subscriptions.push(
-        commands.registerCommand('markdown.extension.editing.toggleBold', toggleBold),
-        commands.registerCommand('markdown.extension.editing.toggleItalic', toggleItalic),
-        commands.registerCommand('markdown.extension.editing.toggleCodeSpan', toggleCodeSpan),
-        commands.registerCommand('markdown.extension.editing.toggleStrikethrough', toggleStrikethrough),
-        commands.registerCommand('markdown.extension.editing.toggleMath', () => toggleMath(transTable)),
-        commands.registerCommand('markdown.extension.editing.toggleMathReverse', () => toggleMath(reverseTransTable)),
-        commands.registerCommand('markdown.extension.editing.toggleHeadingUp', toggleHeadingUp),
-        commands.registerCommand('markdown.extension.editing.toggleHeadingDown', toggleHeadingDown),
-        commands.registerCommand('markdown.extension.editing.toggleList', toggleList),
-        commands.registerCommand('markdown.extension.editing.toggleCodeBlock', toggleCodeBlock),
-        commands.registerCommand('markdown.extension.editing.paste', paste)
+        commands.registerCommand('mdx.extension.editing.toggleBold', toggleBold),
+        commands.registerCommand('mdx.extension.editing.toggleItalic', toggleItalic),
+        commands.registerCommand('mdx.extension.editing.toggleCodeSpan', toggleCodeSpan),
+        commands.registerCommand('mdx.extension.editing.toggleStrikethrough', toggleStrikethrough),
+        commands.registerCommand('mdx.extension.editing.toggleMath', () => toggleMath(transTable)),
+        commands.registerCommand('mdx.extension.editing.toggleMathReverse', () => toggleMath(reverseTransTable)),
+        commands.registerCommand('mdx.extension.editing.toggleHeadingUp', toggleHeadingUp),
+        commands.registerCommand('mdx.extension.editing.toggleHeadingDown', toggleHeadingDown),
+        commands.registerCommand('mdx.extension.editing.toggleList', toggleList),
+        commands.registerCommand('mdx.extension.editing.toggleCodeBlock', toggleCodeBlock),
+        commands.registerCommand('mdx.extension.editing.paste', paste)
     );
 }
 
@@ -31,7 +31,7 @@ function toggleBold() {
 }
 
 function toggleItalic() {
-    let indicator = workspace.getConfiguration('markdown.extension.italic').get<string>('indicator');
+    let indicator = workspace.getConfiguration('mdx.extension.italic').get<string>('indicator');
     return styleByWrapping(indicator);
 }
 

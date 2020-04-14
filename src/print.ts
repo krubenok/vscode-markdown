@@ -12,7 +12,7 @@ let thisContext: ExtensionContext;
 export function activate(context: ExtensionContext) {
     thisContext = context;
     context.subscriptions.push(
-        commands.registerCommand('markdown.extension.printToHtml', () => { print('html'); }),
+        commands.registerCommand('mdx.extension.printToHtml', () => { print('html'); }),
         workspace.onDidSaveTextDocument(onDidSave)
     );
 }
@@ -21,8 +21,8 @@ export function deactivate() { }
 
 function onDidSave(doc: TextDocument) {
     if (
-        doc.languageId === 'markdown'
-        && workspace.getConfiguration('markdown.extension.print', doc.uri).get<boolean>('onFileSave')
+        doc.languageId === 'mdx'
+        && workspace.getConfiguration('mdx.extension.print', doc.uri).get<boolean>('onFileSave')
     ) {
         print('html');
     }
@@ -60,7 +60,7 @@ async function print(type: string) {
         title = title.replace(/^#+/, '').replace(/#+$/, '').trim();
     }
 
-    let body: string = await mdEngine.render(doc.getText(), workspace.getConfiguration('markdown.preview', doc.uri));
+    let body: string = await mdEngine.render(doc.getText(), workspace.getConfiguration('mdx.preview', doc.uri));
 
     // Image paths
     const config = workspace.getConfiguration('markdown.extension', doc.uri);
@@ -159,7 +159,7 @@ function readCss(fileName: string) {
 
 function getStyles(uri: Uri, hasMathEnv: boolean) {
     const katexCss = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">';
-    const markdownCss = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">';
+    const mdxCss = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">';
     const highlightCss = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">';
     const copyTeXCss = '<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">';
 
@@ -167,7 +167,7 @@ function getStyles(uri: Uri, hasMathEnv: boolean) {
     const customCssPaths = getCustomStyleSheets(uri);
 
     return `${hasMathEnv ? katexCss : ''}
-        ${markdownCss}
+        ${mdxCss}
         ${highlightCss}
         ${hasMathEnv ? copyTeXCss : ''}
         ${baseCssPaths.map(cssSrc => wrapWithStyleTag(cssSrc)).join('\n')}
@@ -205,7 +205,7 @@ function relToAbsPath(resource: Uri, href: string): string {
 }
 
 function getPreviewSettingStyles(): string {
-    const previewSettings = workspace.getConfiguration('markdown')['preview'];
+    const previewSettings = workspace.getConfiguration('mdx')['preview'];
     if (!previewSettings) {
         return '';
     }
